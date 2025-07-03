@@ -1,5 +1,4 @@
 import React from 'react';
-import SampleBarChart from '../components/SampleBarChart';
 
 const AboutPage = () => {
   return (
@@ -42,14 +41,6 @@ const AboutPage = () => {
               <p className="text-secondary">Unveiled a modern, premium design for an enhanced user experience.</p>
             </div>
           </div>
-        </div>
-
-        {/* Sample Chart Integration */}
-        <div className="mt-16">
-          <h2 className="text-4xl font-bold text-center mb-8 text-gradient">
-            Website Analytics (Sample)
-          </h2>
-          <SampleBarChart />
         </div>
       </div>
     </section>
