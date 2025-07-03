@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import StickySidebar from "./components/StickySidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,10 +56,13 @@ export default function RootLayout({
           </div>
         </nav>
 
-        {/* Main Content Wrapper */}
-        <main className="relative z-10 pt-20 min-h-screen">
-          {children}
-        </main>
+        {/* Main Content Wrapper with Sidebar */}
+        <div className="flex max-w-7xl mx-auto pt-20">
+          <main className="relative z-10 flex-grow min-h-screen">
+            {children}
+          </main>
+          <StickySidebar />
+        </div>
 
         {/* Footer */}
         <footer className="relative z-10 py-8 text-center text-secondary">
