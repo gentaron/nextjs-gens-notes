@@ -2,16 +2,16 @@ import { client } from "@/sanity/client";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 
+// 動的ルートの設定
 export const dynamicParams = true;
 
+// ISR用のプリビルド対象slug生成
 export async function generateStaticParams() {
-  const slugs = await client.fetch<string[]>(
-    `*[_type == "post" && defined(slug.current)].slug.current`
-  );
+  const slugs = await client.fetch<string[]>(`*[_type == "post" && defined(slug.current)].slug.current`);
   return slugs.map((slug) => ({ slug }));
 }
 
-// 🔥 ←★ここが修正ポイント！
+// 正しい props の型定義
 type Props = {
   params: {
     slug: string;
