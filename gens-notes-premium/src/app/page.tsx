@@ -2,6 +2,8 @@ import Link from "next/link";
 import FeaturedPostsCarousel from "./components/FeaturedPostsCarousel";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const FEATURED_POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ]|order(publishedAt desc)[0...3]{ _id, title, slug, publishedAt }`;
 
@@ -21,12 +23,11 @@ export default async function Home() {
           <p className="text-xl md:text-2xl text-pure-white mb-8 animate-fade-in-up animation-delay-200">
             Your source for insightful articles and captivating stories.
           </p>
-          <Link
-            href="/blog"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-electric-purple to-hot-pink text-pure-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-fade-in-up animation-delay-400"
-          >
-            Explore Blog
-          </Link>
+          <Button asChild className="px-8 py-4 bg-gradient-to-r from-electric-purple to-hot-pink text-pure-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-fade-in-up animation-delay-400">
+            <Link href="/blog">
+              Explore Blog <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </section>
 
