@@ -1,3 +1,5 @@
+import { PortableText } from '@portabletext/react'
+
 const PostPage = async ({ params }) => {
     const query = `*[_type == "post" && slug.current == $slug][0]{
       title, body, publishedAt
