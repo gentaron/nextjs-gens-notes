@@ -44,7 +44,7 @@ export default function RootLayout({
 
         {/* 🌙 Footer */}
         <footer className="w-full mt-12 p-4 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} GN's Notes — Made with ❤️
+          © {new Date().getFullYear()} GN&apos;s Notes — Made with ❤️
         </footer>
       </body>
     </html>
