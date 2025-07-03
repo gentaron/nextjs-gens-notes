@@ -1,7 +1,7 @@
 // src/app/[slug]/page.tsx
 import { PortableText } from '@portabletext/react'
 import { groq } from 'next-sanity'
-import { client } from '@/sanity/lib/client'
+import { client } from '@/sanity/client'
 import { Metadata } from 'next'
 
 type Props = {
