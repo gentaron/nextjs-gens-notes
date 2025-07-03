@@ -41,4 +41,4 @@ const SampleBarChart = () => {
   );
 };
 
-export default SampleBarChart;
+export default SampleBarChart; // Added a comment to trigger re-processing
