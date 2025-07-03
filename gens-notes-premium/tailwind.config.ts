@@ -14,6 +14,7 @@ const config: Config = {
         'pure-white': '#FFFFFF',
         'electric-purple': '#8B5CF6',
         'hot-pink': '#EC4899',
+        'secondary': '#95a5a6',
       },
       backgroundImage: {
         'gradient-purple-pink': 'linear-gradient(to right, #8B5CF6, #EC4899)',
