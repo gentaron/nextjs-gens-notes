@@ -1,0 +1,1 @@
+feat: add Note blog link and basic layout styling
