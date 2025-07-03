@@ -11,13 +11,13 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-type PageProps = {
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
-export default async function PostPage({ params }: PageProps) {
+const PostPage = async ({ params }: PageProps) => {
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title, body, publishedAt
   }`;
@@ -35,4 +35,6 @@ export default async function PostPage({ params }: PageProps) {
       <PortableText value={post.body} />
     </main>
   );
-}
+};
+
+export default PostPage;
