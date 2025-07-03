@@ -5,25 +5,28 @@ import { client } from '@/sanity/client'
 import { Metadata } from 'next'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
   return {
-    title: params.slug,
+    title: slug,
   }
 }
 
 export default async function PostPage({ params }: Props) {
+  const { slug } = await params
+  
   const query = groq`*[_type == "post" && slug.current == $slug][0]{
     title,
     body,
     publishedAt
   }`
 
-  const post = await client.fetch(query, { slug: params.slug })
+  const post = await client.fetch(query, { slug })
 
   return (
     <article className="max-w-3xl mx-auto py-10">
