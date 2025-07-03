@@ -1,23 +1,8 @@
+// src/app/[slug]/page.tsx
 import { PortableText } from '@portabletext/react'
-import { createClient } from 'next-sanity'
-
-// Sanity クライアント設定（あなたの projectId に合わせてね）
-const client = createClient({
-  projectId: 'あなたのProjectID', // 例: 'abc123xy'
-  dataset: 'production',
-  apiVersion: '2023-07-01',
-  useCdn: false,
-})
-
-async function fetchSanityPost(slug: string) {
-  const query = `*[_type == "post" && slug.current == $slug][0]{
-    title,
-    body,
-    publishedAt
-  }`
-  const params = { slug }
-  return await client.fetch(query, params)
-}
+import { groq } from 'next-sanity'
+import { client } from '@/sanity/lib/client'
+import { Metadata } from 'next'
 
 type Props = {
   params: {
@@ -25,22 +10,28 @@ type Props = {
   }
 }
 
-const PostPage = async ({ params }: Props) => {
-  const post = await fetchSanityPost(params.slug)
-
-  if (!post) {
-    return <div>投稿が見つかりませんでした😢</div>
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: params.slug,
   }
+}
+
+export default async function PostPage({ params }: Props) {
+  const query = groq`*[_type == "post" && slug.current == $slug][0]{
+    title,
+    body,
+    publishedAt
+  }`
+
+  const post = await client.fetch(query, { slug: params.slug })
 
   return (
-    <article className="prose mx-auto px-4 py-10">
+    <article className="max-w-3xl mx-auto py-10">
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-      <p className="text-sm text-gray-500 mb-8">
-        公開日: {new Date(post.publishedAt).toLocaleDateString()}
-      </p>
-      <PortableText value={post.body} />
+      <p className="text-gray-500 text-sm mb-10">{new Date(post.publishedAt).toDateString()}</p>
+      <div className="prose prose-lg">
+        <PortableText value={post.body} />
+      </div>
     </article>
   )
 }
-
-export default PostPage
