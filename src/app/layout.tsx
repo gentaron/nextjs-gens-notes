@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GN&apos;s Notes",
+  title: "Gens Notes",
   description: "A collection of thoughts and insights",
 };
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--background)] text-[var(--foreground)] min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] text-[var(--foreground)] min-h-screen`}
         suppressHydrationWarning={true}
       >
         {/* ✨ Animated Background Elements */}
@@ -44,7 +44,7 @@ export default function RootLayout({
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-[var(--foreground)] to-[var(--secondary)] bg-clip-text text-transparent">
-                  GN&apos;s Notes
+                  Gens Notes
                 </h1>
                 <p className="text-xs text-[var(--secondary)]">Thoughts & Insights</p>
               </div>
@@ -54,7 +54,7 @@ export default function RootLayout({
               href="https://note.com/gensnotes"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[var(--button-gradient-start)] to-[var(--button-gradient-end)] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
             >
               <span className="text-base">📓</span>
               <span>Visit Note Blog</span>
@@ -71,7 +71,7 @@ export default function RootLayout({
         </main>
 
         {/* 🌙 Footer with Gradient */}
-        <footer className="relative w-full mt-12 p-6 bg-gradient-to-r from-[var(--background)] to-[var(--background)]/50 border-t border-[var(--border-color)]">
+        <footer className="relative w-full mt-12 p-6 bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)] border-t border-[var(--border-color)]">
           <div className="max-w-5xl mx-auto text-center space-y-3">
             <div className="flex items-center justify-center space-x-4 text-[var(--secondary)]">
               <span className="flex items-center gap-1.5">
@@ -85,7 +85,7 @@ export default function RootLayout({
               </span>
             </div>
             <p className="text-xs text-[var(--secondary)]">
-              © {new Date().getFullYear()} GN&apos;s Notes — Crafting ideas into reality
+              © {new Date().getFullYear()} Gens Notes — Crafting ideas into reality
             </p>
           </div>
         </footer>
