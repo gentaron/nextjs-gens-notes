@@ -5,11 +5,20 @@ import { PortableText } from "@portabletext/react";
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch<string[]>(`*[_type == "post" && defined(slug.current)].slug.current`);
+  const slugs = await client.fetch<string[]>(
+    `*[_type == "post" && defined(slug.current)].slug.current`
+  );
   return slugs.map((slug) => ({ slug }));
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
+// 🔥 ←★ここが修正ポイント！
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function PostPage({ params }: Props) {
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title, body, publishedAt
   }`;
