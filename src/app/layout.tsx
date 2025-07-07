@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import StickySidebar from "./components/StickySidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Gens Notes",
-  description: "A collection of thoughts and insights",
+  description: "For Thoughts & Insights, just Gens Notes.",
 };
 
 export default function RootLayout({
@@ -26,67 +27,57 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] text-[var(--foreground)] min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-deep-black text-pure-white`}
         suppressHydrationWarning={true}
       >
-        {/* ✨ Animated Background Elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-0 -left-4 w-96 h-96 bg-[var(--primary)] rounded-full mix-blend-multiply filter blur-2xl opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-0 -right-4 w-96 h-96 bg-[var(--accent)] rounded-full mix-blend-multiply filter blur-2xl opacity-10 animate-pulse delay-1000"></div>
+        {/* Animated Particle Background Mesh */}
+        <div className="fixed inset-0 -z-10 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900 to-pink-900 opacity-20 animate-gradient-pulse"></div>
+          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         </div>
 
-        {/* 🌟 Header with Enhanced Glassmorphism Effect */}
-        <header className="sticky top-0 z-50 w-full p-4 backdrop-blur-xl bg-[var(--card-background)]/80 border-b border-[var(--border-color)] shadow-sm">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                <span className="text-white font-bold text-lg">GN</span>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-[var(--foreground)] to-[var(--secondary)] bg-clip-text text-transparent">
-                  Gens Notes
-                </h1>
-                <p className="text-xs text-[var(--secondary)]">Thoughts & Insights</p>
-              </div>
+        {/* Floating Navigation Bar */}
+        <nav className="fixed top-0 left-0 right-0 z-50 p-4 backdrop-blur-lg bg-white/10 shadow-lg">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <Link href="/" className="text-2xl font-bold text-gradient flex flex-col">
+              <span>Gens Notes</span>
+              <span className="text-sm text-secondary">For Thoughts & Insights, just Gens Notes.</span>
             </Link>
-            
-            <a
-              href="https://note.com/gensnotes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[var(--button-gradient-start)] to-[var(--button-gradient-end)] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              <span className="text-base">📓</span>
-              <span>Visit Note Blog</span>
-              <div className="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
-          </div>
-        </header>
-
-        {/* 🌈 Main Content with Enhanced Container */}
-        <main className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="bg-[var(--card-background)]/70 backdrop-blur-md rounded-xl shadow-lg border border-[var(--border-color)] p-6 sm:p-8 min-h-[60vh]">
-            {children}
-          </div>
-        </main>
-
-        {/* 🌙 Footer with Gradient */}
-        <footer className="relative w-full mt-12 p-6 bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)] border-t border-[var(--border-color)]">
-          <div className="max-w-5xl mx-auto text-center space-y-3">
-            <div className="flex items-center justify-center space-x-4 text-[var(--secondary)]">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                Available for collaboration
-              </span>
-              <span className="hidden sm:block">•</span>
-              <span className="flex items-center gap-1.5">
-                <span className="text-red-500">❤️</span>
-                Made with passion
-              </span>
+            <div className="space-x-4">
+              <Link href="/blog" className="text-pure-white hover:text-cyan-accent transition-colors">
+                Blog
+              </Link>
+              <Link href="/about" className="text-pure-white hover:text-cyan-accent transition-colors">
+                About
+              </Link>
+              <Link href="/contact" className="text-pure-white hover:text-cyan-accent transition-colors">
+                Contact
+              </Link>
             </div>
-            <p className="text-xs text-[var(--secondary)]">
-              © {new Date().getFullYear()} Gens Notes — Crafting ideas into reality
-            </p>
+          </div>
+        </nav>
+
+        {/* Main Content Wrapper with Sidebar */}
+        <div className="flex max-w-7xl mx-auto pt-20">
+          <main className="relative z-10 flex-grow min-h-screen">
+            {children}
+          </main>
+          <StickySidebar />
+        </div>
+
+        {/* Footer */}
+        <footer className="relative z-10 py-8 text-center text-secondary">
+          <p>&copy; {new Date().getFullYear()} Gens Notes. For Thoughts & Insights, just Gens Notes.</p>
+          <div className="flex justify-center space-x-4 mt-4">
+            <a href="#" className="text-pure-white hover:text-cyan-accent transition-colors">
+              Facebook
+            </a>
+            <a href="#" className="text-pure-white hover:text-cyan-accent transition-colors">
+              Twitter
+            </a>
+            <a href="#" className="text-pure-white hover:text-cyan-accent transition-colors">
+              LinkedIn
+            </a>
           </div>
         </footer>
       </body>
