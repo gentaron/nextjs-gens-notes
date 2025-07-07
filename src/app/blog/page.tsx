@@ -10,9 +10,15 @@ export default async function BlogPage() {
 
   try {
     posts = await client.fetch<SanityDocument[]>(POSTS_QUERY);
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Sanity fetch error (all posts):", err);
-    error = `Failed to load posts: ${err.message || err.toString()}`;
+    let errorMessage = "An unknown error occurred.";
+    if (err instanceof Error) {
+      errorMessage = err.message;
+    } else if (typeof err === 'string') {
+      errorMessage = err;
+    }
+    error = `Failed to load posts: ${errorMessage}`;
   }
 
   return (

@@ -11,9 +11,15 @@ export default async function Home() {
 
   try {
     featuredPosts = await client.fetch<SanityDocument[]>(FEATURED_POSTS_QUERY);
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Sanity fetch error (featured posts):", err);
-    error = `Failed to load featured posts: ${err.message || err.toString()}`;
+    let errorMessage = "An unknown error occurred.";
+    if (err instanceof Error) {
+      errorMessage = err.message;
+    } else if (typeof err === 'string') {
+      errorMessage = err;
+    }
+    error = `Failed to load featured posts: ${errorMessage}`;
   }
 
   return (
