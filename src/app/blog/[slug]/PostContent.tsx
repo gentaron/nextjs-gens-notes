@@ -76,7 +76,7 @@ export default function PostContent({ slug }: PostContentProps) {
           Post Not Found
         </h2>
         <p className="text-[var(--gray-text)] text-lg">
-          The article you're looking for doesn't exist or has been moved.
+          The article you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
       </div>
     );
@@ -192,12 +192,12 @@ export default function PostContent({ slug }: PostContentProps) {
           <button className="btn-primary px-6 py-3 rounded-full">
             Share Article
           </button>
-          <a
+          <Link
             href="/blog"
             className="px-6 py-3 glass-card rounded-full text-[var(--pure-white)] hover:text-[var(--cyan-accent)] transition-all duration-300 font-semibold hover:scale-105"
           >
             Read More Articles
-          </a>
+          </Link>
         </div>
       </footer>
     </div>

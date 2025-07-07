@@ -151,16 +151,16 @@ const AboutPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/blog"
-                className="btn-primary px-8 py-4 rounded-full font-semibold"
+                className="btn-primary px-8 py-4 rounded-full font-semibold inline-block"
               >
                 Read Our Blog
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className="px-8 py-4 glass-card rounded-full text-[var(--pure-white)] hover:text-[var(--cyan-accent)] transition-all duration-300 font-semibold hover:scale-105"
               >
                 Get In Touch
-              </a>
+              </Link>
             </div>
           </div>
         </div>

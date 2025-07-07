@@ -53,7 +53,7 @@ const StickySidebar = () => {
           {recentComments.map((comment, index) => (
             <li key={index} className="p-4 bg-[var(--glass-bg)] rounded-xl border border-[var(--dark-border)] hover:border-[var(--cyan-accent)]/30 transition-colors">
               <p className="text-[var(--gray-text)] text-sm mb-2 italic">
-                "{comment.text}"
+                &ldquo;{comment.text}&rdquo;
               </p>
               <p className="text-[var(--cyan-accent)] text-xs font-semibold">
                 — {comment.author}
