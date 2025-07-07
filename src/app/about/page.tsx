@@ -44,7 +44,7 @@ const AboutPage = () => {
         </div>
       </div>
     </section>
-  );
+  ); // Added a comment to trigger re-processing
 };
 
 export default AboutPage;
