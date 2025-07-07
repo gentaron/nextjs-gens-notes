@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Gens Notes",
-  description: "A modern, premium blog for Gens Notes",
+  description: "For Thoughts & Insights, just Gens Notes.",
 };
 
 export default function RootLayout({
@@ -39,8 +39,9 @@ export default function RootLayout({
         {/* Floating Navigation Bar */}
         <nav className="fixed top-0 left-0 right-0 z-50 p-4 backdrop-blur-lg bg-white/10 shadow-lg">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-gradient">
-              Gens Notes
+            <Link href="/" className="text-2xl font-bold text-gradient flex flex-col">
+              <span>Gens Notes</span>
+              <span className="text-sm text-secondary">For Thoughts & Insights, just Gens Notes.</span>
             </Link>
             <div className="space-x-4">
               <Link href="/blog" className="text-pure-white hover:text-cyan-accent transition-colors">
@@ -66,7 +67,7 @@ export default function RootLayout({
 
         {/* Footer */}
         <footer className="relative z-10 py-8 text-center text-secondary">
-          <p>&copy; {new Date().getFullYear()} Gens Notes. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Gens Notes. For Thoughts & Insights, just Gens Notes.</p>
           <div className="flex justify-center space-x-4 mt-4">
             <a href="#" className="text-pure-white hover:text-cyan-accent transition-colors">
               Facebook
