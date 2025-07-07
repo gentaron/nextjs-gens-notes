@@ -35,7 +35,7 @@ const ContactPage = () => {
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-[var(--electric-purple)] to-[var(--hot-pink)] mx-auto rounded-full mb-8"></div>
           <p className="text-xl text-[var(--gray-text)] max-w-2xl mx-auto">
-            Have a question, suggestion, or want to collaborate? We'd love to hear from you!
+            Have a question, suggestion, or want to collaborate? We&apos;d love to hear from you!
           </p>
         </div>
 
