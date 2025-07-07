@@ -6,7 +6,15 @@ import { client } from "@/sanity/client";
 const FEATURED_POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ]|order(publishedAt desc)[0...3]{ _id, title, slug, publishedAt }`;
 
 export default async function Home() {
-  const featuredPosts = await client.fetch<SanityDocument[]>(FEATURED_POSTS_QUERY);
+  let featuredPosts: SanityDocument[] = [];
+  let error: string | null = null;
+
+  try {
+    featuredPosts = await client.fetch<SanityDocument[]>(FEATURED_POSTS_QUERY);
+  } catch (err: any) {
+    console.error("Sanity fetch error (featured posts):", err);
+    error = `Failed to load featured posts: ${err.message || err.toString()}`;
+  }
 
   return (
     <>
@@ -30,7 +38,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <FeaturedPostsCarousel posts={featuredPosts} />
+      {error ? (
+        <div className="text-center text-red-500 py-16">{error}</div>
+      ) : (
+        <FeaturedPostsCarousel posts={featuredPosts} />
+      )}
     </>
   );
 }

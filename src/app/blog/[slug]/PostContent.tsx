@@ -21,9 +21,9 @@ export default function PostContent({ slug }: PostContentProps) {
       try {
         const fetchedPost = await client.fetch<SanityDocument>(POST_QUERY, { slug });
         setPost(fetchedPost);
-      } catch (err) {
-        setError("Failed to load post.");
-        console.error(err);
+      } catch (err: any) {
+        console.error("Sanity fetch error:", err);
+        setError(`Failed to load post: ${err.message || err.toString()}`);
       } finally {
         setLoading(false);
       }
