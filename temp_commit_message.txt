@@ -1,0 +1,1 @@
+chore: minor change to about/page.tsx to force Vercel re-processing
