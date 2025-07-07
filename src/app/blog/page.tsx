@@ -14,7 +14,7 @@ export default async function BlogPage() {
           All Blog Posts
         </h1>
         {posts.length === 0 ? (
-          <p className="text-center text-pure-white">No posts found.</p>
+          <p className="text-center text-[var(--pure-white)]">No posts found.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (

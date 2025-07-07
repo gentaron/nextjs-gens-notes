@@ -8,16 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        'deep-black': '#000000',
-        'cyan-accent': '#06B6D4',
-        'pure-white': '#FFFFFF',
-        'electric-purple': '#8B5CF6',
-        'hot-pink': '#EC4899',
-        'secondary': '#95a5a6',
-      },
       backgroundImage: {
         'gradient-purple-pink': 'linear-gradient(to right, #8B5CF6, #EC4899)',
+        'gradient-hero': 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)',
+      },
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+        'card-glow': '0 0 15px rgba(139, 92, 246, 0.5)',
       },
       keyframes: {
         'gradient-pulse': {
