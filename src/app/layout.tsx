@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -10,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  manifest: "/manifest.webmanifest",
   title: "Gens Notes - Premium Blog Experience",
   description: "For Thoughts & Insights, just Gens Notes. A premium digital space for captivating stories and thought-provoking ideas.",
   keywords: ["blog", "articles", "insights", "thoughts", "premium", "modern"],
@@ -32,6 +34,13 @@ export default function RootLayout({
         className={`${inter.className} antialiased bg-[var(--deep-black)] text-[var(--pure-white)] overflow-x-hidden`}
         suppressHydrationWarning={true}
       >
+        <Script id="pwa-install-worker" strategy="afterInteractive">
+          {`if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+            navigator.serviceWorker.getRegistration().then((registration) => {
+              if (!registration) return navigator.serviceWorker.register('/install-worker.js');
+            }).catch(console.error);
+          }`}
+        </Script>
         {/* Floating Particles */}
         <div className="floating-particles">
           {[...Array(20)].map((_, i) => (
